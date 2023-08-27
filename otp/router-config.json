@@ -1,0 +1,5 @@
+{
+	"routingDefaults": {
+		"maxDirectStreetDuration": "P4D"
+	}
+}

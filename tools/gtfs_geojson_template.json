@@ -1,0 +1,9 @@
+{
+    "agencies":  $agencies,
+    "bufferSizeMeters": 400,
+    "coordinatePrecision": 4,
+    "outputType": "agency",
+    "outputFormat": "lines",
+    "verbose": true,
+    "zipOutput": false
+  }

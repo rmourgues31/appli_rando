@@ -1,0 +1,22 @@
+version: '3.0'
+services:
+  valhalla:
+    image: ghcr.io/gis-ops/docker-valhalla/valhalla:latest
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./custom_files/:/custom_files
+    environment:
+      # The tile_file must be located in the `custom_files` folder.
+      # The tile_file has priority and is used when valid.
+      # If the tile_file doesn't exist, the url is used instead.
+      # Don't blank out tile_url when you use tile_file and vice versa.
+      - tile_urls=http://download.openstreetmap.fr/extracts/europe/france/rhone_alpes-latest.osm.pbf http://download.openstreetmap.fr/extracts/europe/france/provence_alpes_cote_d_azur-latest.osm.pbf
+      # Get correct bounding box from e.g. https://boundingbox.klokantech.com/
+      - min_x=5.027 # -> Albania | -180 -> World
+      - min_y=44.6811 # -> Albania | -90  -> World
+      - max_x=6.1984 # -> Albania |  180 -> World
+      - max_y=45.6407 # -> Albania |  90  -> World
+      - use_tiles_ignore_pbf=True
+      - build_elevation=True
+      - force_rebuild=False

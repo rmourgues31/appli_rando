@@ -1,0 +1,71 @@
+services:
+  app:
+    build: 
+      context: ./app
+    ports:
+      - 8050:80
+    links:
+      - otp
+      - alti
+      - valhalla
+    networks:
+      - networkapp
+  
+  otp:
+    build: 
+      context: ./otp
+    ports:
+      - 8080:8080
+    networks:
+      - networkapp
+    healthcheck:
+      test: curl --fail http://localhost:8080 || exit 1
+      interval: 10s
+      retries: 10
+      start_period: 5s
+      timeout: 10s
+    
+  alti:
+    build: 
+      context: ./alti
+    ports:
+      - 8000:8000
+    networks:
+      - networkapp
+    healthcheck:
+      test: curl --fail http://localhost:8000 || exit 1
+      interval: 10s
+      retries: 10
+      start_period: 5s
+      timeout: 10s
+  
+  valhalla:
+    image: ghcr.io/gis-ops/docker-valhalla/valhalla:latest
+    ports:
+      - 8002:8002
+    volumes:
+      - ./valhalla/custom_files/:/custom_files
+    environment:
+      # The tile_file must be located in the `custom_files` folder.
+      # The tile_file has priority and is used when valid.
+      # If the tile_file doesn't exist, the url is used instead.
+      # Don't blank out tile_url when you use tile_file and vice versa.
+      - tile_urls=http://download.openstreetmap.fr/extracts/europe/france/rhone_alpes-latest.osm.pbf http://download.openstreetmap.fr/extracts/europe/france/provence_alpes_cote_d_azur-latest.osm.pbf
+      # Get correct bounding box from e.g. https://boundingbox.klokantech.com/
+      - min_x=5.027 
+      - min_y=44.6811 
+      - max_x=6.1984 
+      - max_y=45.6407 
+      - use_tiles_ignore_pbf=True
+      - force_rebuild=False
+    networks:
+      - networkapp
+    healthcheck:
+      test: curl --fail http://localhost:8002 || exit 1
+      interval: 10s
+      retries: 10
+      start_period: 5s
+      timeout: 10s
+
+networks:
+  networkapp:

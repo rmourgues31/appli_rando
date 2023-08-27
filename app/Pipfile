@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+dash = "*"
+dash-leaflet = "*"
+plotly = "*"
+polyline = "*"
+gpxpy = "*"
+haversine = "*"
+isodate = "*"
+pyvalhalla = "*"
+dash-bootstrap-components = "*"
+simplification = "*"
+orjson = "*"
+dash-extensions = "*"
+gunicorn = "*"
+pandas = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
