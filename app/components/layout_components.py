@@ -63,32 +63,36 @@ def render_horizontal_form(id_time: str, id_date: str, id_search: str) -> dbc.Fo
         )
 
 def render_tab(id_time: str, id_date: str, id_search: str, id_search_status: str, 
-               id_dropdown: str, id_text_data: str, title_tab: str) -> dbc.Tab:
+               id_dropdown: str, id_text_data: str, title_tab: str, id_div_results: str) -> dbc.Tab:
     '''
     Tab for form input
     '''
     return dbc.Tab(render_card([
                     #html.Br(),
                     render_horizontal_form(id_time, id_date, id_search),
-                    html.Hr(),
-                    dbc.Label("Résultats", html_for=id_dropdown),
                     html.Div(id=id_search_status),
-                    render_dropdown(id=id_dropdown, options=[], value=None),
-                    html.Div(render_card([
-                            dcc.Markdown(id=id_text_data),
-                            dcc.Clipboard(
-                                target_id=id_text_data,
-                                style={
-                                    "position": "absolute",
-                                    "top": 0,
-                                    "right": 20,
-                                    "fontSize": 20,
-                                },
-                            )
-                        ]))
-                ]), 
-                label=title_tab
-            )
+                    html.Div(id=id_div_results,
+                             style = {"display": "none"},
+                             children=[
+                                html.Hr(), 
+                                dbc.Label("Résultats", html_for=id_dropdown),
+                                render_dropdown(id=id_dropdown, options=[], value=None),
+                                html.Div(render_card([
+                                        dcc.Markdown(id=id_text_data),
+                                        dcc.Clipboard(
+                                            target_id=id_text_data,
+                                            style={
+                                                "position": "absolute",
+                                                "top": 0,
+                                                "right": 20,
+                                                "fontSize": 20,
+                                            },
+                                        )
+                                    ]))
+                             ]),
+                    ]), 
+                    label=title_tab
+                )
 
 def render_icon_modes(it: dict) -> html.Span:
     '''
@@ -124,7 +128,7 @@ def render_geojson_stops():
     Display all stops of agencies as a geojson
     '''
     ns = Namespace('dashExtensions','default')
-    path = "." + get_asset_url("geojson/output")
+    path = "." + get_asset_url("geojson")
 
     files = list(Path(path).rglob('*.geojson'))
     return [dl.GeoJSON(url=str(file), 

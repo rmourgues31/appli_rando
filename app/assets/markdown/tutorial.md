@@ -1,6 +1,12 @@
-Bienvenue dans l'application !
+Bienvenue dans itirando !
 
-L'application permet de planifier un itinéraire vers une randonnée en utilisant la marche et les transports en commun.
+L'application permet de :
+- Dessiner une randonnée ou importer une randonnée existante ;
+- Sélectionner une randonnée parmi une liste d'exemples ;
+- Planifier l'itinéraire en transports en commun (aller et retour) ;
+- Exporter les itinéraires aller et retour, ainsi que la randonnée consolidée par les marches d'approche.
+
+Attention ! Les itinéraires et randonnées présentés ici n'engagent aucunement la responsabilité de l'équipe. Faites toujours preuve de prudence en montagne. 
 
 #### Importer une trace GPX
 
@@ -10,6 +16,13 @@ Pour importer une trace GPX :
 - La trace est importée sur la carte.
 - La trace n'est pas modifiable une fois importée.
 - Pour supprimer la trace, dessiner une nouvelle trace avec l'outil de dessin sur la carte.
+
+Pour sélectionner une randonnée donnée en exemple :
+- Ouvrir la liste avec le bouton "Randonnées" ;
+- Cliquer sur une ligne ;
+- La randonnée est chargée automatiquement. La trace n'est pas modifiable.
+
+Certaines traces ne sont que le sommet atteint, cela donne tout de même une idée des sommets accessibles.
 
 #### Dessiner une trace
 
@@ -30,9 +43,10 @@ L'itinéraire aller et retour sont calculés sur la base du premier et dernier p
 
 Les marches pour aller au départ de la randonnée / revenir depuis la fin sont ajoutées à l'itinéraire de randonnée.
 
+Chaque itinéraire peut être copié dans le presse papier avec l'icône correspondante.
+
 #### Exporter les données
 
 Exportez ensuite la trace GPX complétée avec le dernier module à gauche. Sont exportées : 
 - La trace GPX complète : marche aller + randonnée + marche retour ;
-- Les informations des itinéraires en transport en commun dans un fichier .txt ;
 - Les traces GPX de l'itinéraire aller et retour.

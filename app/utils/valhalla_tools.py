@@ -9,7 +9,8 @@ from utils.date_time import datetime_from_iso
 from utils.geo import reduce_line
 
 use_actor = os.getenv("USE_ACTOR") == "ACTOR"
-valhalla_url = "http://" + os.getenv("VALHALLA_SERVICE") + ":" + os.getenv("VALHALLA_PORT")
+port = os.getenv("VALHALLA_PORT")
+valhalla_url = "http://" + os.getenv("VALHALLA_SERVICE") + ((":" + port) if port else "") 
 
 if use_actor:
     config = get_config(tile_extract=os.getenv("VALHALLA_TILES"), verbose=True)

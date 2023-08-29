@@ -1,5 +1,5 @@
 {
-    "agencies":  [{"agency_key": "CG38", "path": "..\\otp\\CG38.GTFS.zip", "agency_name": "Cars Région"}, {"agency_key": "1080", "path": "..\\otp\\export-ter-gtfs-last.GTFS.zip", "agency_name": "DB"}, {"agency_key": "1187", "path": "..\\otp\\export-ter-gtfs-last.GTFS.zip", "agency_name": "SNCF"}, {"agency_key": "FR:Authority::71B476C8-63B7-459C-AD49-2ED21FE30AB1:", "path": "..\\otp\\export-ter-gtfs-last.GTFS.zip", "agency_name": "Conseil Régional Bourgogne - Franche-Comté"}, {"agency_key": "FR:Authority::7A842934-E342-4D4F-AF8D-8B4C404FFBC4:", "path": "..\\otp\\export-ter-gtfs-last.GTFS.zip", "agency_name": "Conseil Régional Auvergne - Rhône-Alpes"}, {"agency_key": "OCEdefault", "path": "..\\otp\\export-ter-gtfs-last.GTFS.zip", "agency_name": "OCEdefault"}, {"agency_key": "GSV", "path": "..\\otp\\GSV.GTFS.zip", "agency_name": "Mobilités M - TouGo"}, {"agency_key": "SEM", "path": "..\\otp\\SEM.GTFS.zip", "agency_name": "Mobilités M - Tag"}, {"agency_key": "TPV", "path": "..\\otp\\TPV.GTFS.zip", "agency_name": "Mobilités M - Transports du Pays Voironnais"}],
+    "agencies":  [{"agency_key": "CG38", "path": "..\\otp\\CG38.GTFS.zip", "agency_name": "Cars Région"}, {"agency_key": "SEM", "path": "..\\otp\\SEM.gtfs.zip", "agency_name": "Mobilités M - Tag"}],
     "bufferSizeMeters": 400,
     "coordinatePrecision": 4,
     "outputType": "agency",

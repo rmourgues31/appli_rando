@@ -42,9 +42,9 @@ inputs = html.Div([
             html.Hr(),
             dbc.Tabs([
                 render_tab(ids.TIME_PICKER_FORTH, ids.DATE_PICKER_FORTH, ids.SEARCH_BUTTON_FORTH, ids.PRINT_SEARCH_STATUS_FORTH, 
-                           ids.DROPDOWN_ITINERARIES_FORTH, ids.TEXT_DATA_ITINERARY_FORTH, "Aller"),
+                           ids.DROPDOWN_ITINERARIES_FORTH, ids.TEXT_DATA_ITINERARY_FORTH, "Aller", ids.DIV_RESULTS_FORTH),
                 render_tab(ids.TIME_PICKER_BACK, ids.DATE_PICKER_BACK, ids.SEARCH_BUTTON_BACK, ids.PRINT_SEARCH_STATUS_BACK, 
-                           ids.DROPDOWN_ITINERARIES_BACK, ids.TEXT_DATA_ITINERARY_BACK, "Retour")
+                           ids.DROPDOWN_ITINERARIES_BACK, ids.TEXT_DATA_ITINERARY_BACK, "Retour", ids.DIV_RESULTS_BACK)
             ]),
             dbc.Card(
                 dbc.CardBody(

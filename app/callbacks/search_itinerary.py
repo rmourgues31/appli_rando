@@ -1,6 +1,7 @@
 from dash import html, Input, Output, State
 from datetime import datetime
 import traceback
+from utils.date_time import unix_to_fr_date_hour
 from utils.otp_tools import compute_itineraries_transit, add_walk_near_hike, stops_near_point
 from components.layout_components import render_icon_modes
 from components import ids
@@ -46,24 +47,58 @@ def search(_date: datetime, _time: datetime, route: dict,
 
                     if True in [it["is_transit"] for it in new_its]:
                         break
-        # TODO filter similar itineraries, specially when the stops are used
-        dic = {i:it for i,it in enumerate(its)}
+            
+        # reindex itineraries
+            dic = {}
+            for i, it in enumerate(its):
+                it["id"] = i
+                dic[i] = it
+
+            # keep only shortest walk
+            walks = [it for it in its if len(set([s["mode"] for s in it["segments"]])) == 1]
+            id_min = min(enumerate(walks), key=lambda x: x[1]["total_duree"])[1]["id"]
+            for walk in walks:
+                if int(walk["id"]) != int(id_min):
+                    del dic[int(walk["id"])]
+            
+            # filter similar itineraries
+            routes = set()
+            for it in its:
+                if it["id"] not in dic.keys():
+                    continue
+                new = ""
+                for seg in it["segments"]:
+                    if seg["is_transit"]:
+                        new += seg["transit"]["route_id"]
+                    else:
+                        new += seg["mode"]
+                new += unix_to_fr_date_hour(it["heure_depart"])
+                if new in routes:
+                    del dic[int(it["id"])]
+                else:
+                    routes.add(new)
+        
+        # sort by departure hour
         dic = dict(sorted(dic.items(), key=lambda item: item[1]["heure_depart"]))
 
         itineraries[direction] = dic
 
         options=[{'label': render_icon_modes(it), 'value': i} for i,it in dic.items()]
 
-        return options, 0 if len(dic.keys()) > 0 else None, itineraries, html.Div(f'{len(dic)} itinéraires ont été trouvés.')
+        if len(dic) == 0:
+            return options, None, itineraries, html.Div("Aucun itinéraire n'a été trouvé."), {"display" : "none"}
+        else:
+            return options, min(dic.keys()), itineraries, html.Div(f'{len(dic)} itinéraires ont été trouvés.'), {"display" : "block"}
     
     except Exception as e:
         traceback.print_exc()
-        return [], None, [], html.Div('Une erreur est survenue.')
+        return [], None, [], html.Div('Une erreur est survenue.'), {"display" : "none"}
 
 @app.callback(Output(ids.DROPDOWN_ITINERARIES_FORTH, 'options'),
             Output(ids.DROPDOWN_ITINERARIES_FORTH, 'value'),
             Output(ids.STORE_ITINERARIES, 'data', allow_duplicate=True),
-            Output(ids.PRINT_SEARCH_STATUS_FORTH, 'children'),    
+            Output(ids.PRINT_SEARCH_STATUS_FORTH, 'children'),
+            Output(ids.DIV_RESULTS_FORTH, "style"),    
             Input(ids.SEARCH_BUTTON_FORTH, 'n_clicks'),
             State(ids.DATE_PICKER_FORTH, 'date'),
             State(ids.TIME_PICKER_FORTH, 'value'),
@@ -79,7 +114,8 @@ def search_itineraries_forth(_: int, _date: datetime, _time: datetime, route: di
 @app.callback(Output(ids.DROPDOWN_ITINERARIES_BACK, 'options'),
             Output(ids.DROPDOWN_ITINERARIES_BACK, 'value'),
             Output(ids.STORE_ITINERARIES, 'data'),
-            Output(ids.PRINT_SEARCH_STATUS_BACK, 'children'),    
+            Output(ids.PRINT_SEARCH_STATUS_BACK, 'children'),   
+            Output(ids.DIV_RESULTS_BACK, "style"),    
             Input(ids.SEARCH_BUTTON_BACK, 'n_clicks'),
             State(ids.DATE_PICKER_BACK, 'date'),
             State(ids.TIME_PICKER_BACK, 'value'),
