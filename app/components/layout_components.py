@@ -124,7 +124,7 @@ def render_geojson_stops():
     Display all stops of agencies as a geojson
     '''
     ns = Namespace('dashExtensions','default')
-    path = "." + get_asset_url("geojson/output")
+    path = "." + get_asset_url("geojson")
 
     files = list(Path(path).rglob('*.geojson'))
     return [dl.GeoJSON(url=str(file), 

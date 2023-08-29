@@ -47,7 +47,7 @@ def search(_date: datetime, _time: datetime, route: dict,
                     if True in [it["is_transit"] for it in new_its]:
                         break
         # TODO filter similar itineraries, specially when the stops are used
-        dic = {i:it for i,it in enumerate(its)}
+            dic = {i:it for i,it in enumerate(its)}
         dic = dict(sorted(dic.items(), key=lambda item: item[1]["heure_depart"]))
 
         itineraries[direction] = dic

@@ -115,7 +115,7 @@ def add_start_end(geojson: dict, children: list[dict]) -> list[dict]:
     coord = geojson["features"][0]["geometry"]["coordinates"]
     
     if len(coord) > 1:
-        start = Marker(position=coord[0][::-1], icon=render_icon("start_icon.png", 0.5))
+        start = Marker(position=coord[0][::-1], icon=render_icon("start_icon.png", 0.1))
         end = Marker(position=coord[-1][::-1], icon=render_icon("finish_icon.png", 0))
         if len(children) > 1:
             children[1] = start

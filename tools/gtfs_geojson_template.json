@@ -3,7 +3,7 @@
     "bufferSizeMeters": 400,
     "coordinatePrecision": 4,
     "outputType": "agency",
-    "outputFormat": "lines",
+    "outputFormat": "stops",
     "verbose": true,
     "zipOutput": false
   }
