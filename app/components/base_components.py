@@ -51,12 +51,7 @@ def render_datepicker(id: str) -> dcc.DatePickerSingle:
                     date=date.today(),
                     month_format="DD/MM/YYYY",
                     display_format="DD/MM/YYYY",
-                    style={
-                        #'width': '50%',
-                        #'height': '45px',
-                        'fontSize': 8,
-                        'display': 'inline-block',
-                        'verticalAlign': 'top'}
+                    first_day_of_week=1
                 )
 
 def render_dropdown(id: str, options: list[dict], value: str) -> dcc.Dropdown:

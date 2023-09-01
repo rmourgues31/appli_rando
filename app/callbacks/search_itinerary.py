@@ -85,16 +85,20 @@ def search(_date: datetime, _time: datetime, route: dict,
 
         options=[{'label': render_icon_modes(it), 'value': i} for i,it in dic.items()]
 
-        return options, min(dic.keys()) if len(dic.keys()) > 0 else None, itineraries, html.Div(f'{len(dic)} itinéraires ont été trouvés.')
+        if len(dic) == 0:
+            return options, None, itineraries, html.Div("Aucun itinéraire n'a été trouvé."), {"display" : "none"}
+        else:
+            return options, min(dic.keys()), itineraries, html.Div(f'{len(dic)} itinéraires ont été trouvés.'), {"display" : "block"}
     
     except Exception as e:
         traceback.print_exc()
-        return [], None, [], html.Div('Une erreur est survenue.')
+        return [], None, [], html.Div('Une erreur est survenue.'), {"display" : "none"}
 
 @app.callback(Output(ids.DROPDOWN_ITINERARIES_FORTH, 'options'),
             Output(ids.DROPDOWN_ITINERARIES_FORTH, 'value'),
             Output(ids.STORE_ITINERARIES, 'data', allow_duplicate=True),
-            Output(ids.PRINT_SEARCH_STATUS_FORTH, 'children'),    
+            Output(ids.PRINT_SEARCH_STATUS_FORTH, 'children'),
+            Output(ids.DIV_RESULTS_FORTH, "style"),    
             Input(ids.SEARCH_BUTTON_FORTH, 'n_clicks'),
             State(ids.DATE_PICKER_FORTH, 'date'),
             State(ids.TIME_PICKER_FORTH, 'value'),
@@ -110,7 +114,8 @@ def search_itineraries_forth(_: int, _date: datetime, _time: datetime, route: di
 @app.callback(Output(ids.DROPDOWN_ITINERARIES_BACK, 'options'),
             Output(ids.DROPDOWN_ITINERARIES_BACK, 'value'),
             Output(ids.STORE_ITINERARIES, 'data'),
-            Output(ids.PRINT_SEARCH_STATUS_BACK, 'children'),    
+            Output(ids.PRINT_SEARCH_STATUS_BACK, 'children'),   
+            Output(ids.DIV_RESULTS_BACK, "style"),    
             Input(ids.SEARCH_BUTTON_BACK, 'n_clicks'),
             State(ids.DATE_PICKER_BACK, 'date'),
             State(ids.TIME_PICKER_BACK, 'value'),

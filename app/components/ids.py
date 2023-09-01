@@ -37,6 +37,7 @@ DIV_SEARCH_FORTH = "div-recherche-it-forth"
 PRINT_SEARCH_STATUS_FORTH = "it-data-print-forth"
 DROPDOWN_ITINERARIES_FORTH = "dropdown-forth"
 TEXT_DATA_ITINERARY_FORTH = "itineraire-data-print-forth"
+DIV_RESULTS_FORTH = "div-results-forth"
 
 # BACK ROUTE
 DIV_SEARCH_BACK = "div-recherche-it-back"
@@ -46,6 +47,7 @@ DATE_PICKER_BACK = "date-picker-back"
 PRINT_SEARCH_STATUS_BACK = "it-data-print-back"
 DROPDOWN_ITINERARIES_BACK = "dropdown-back"
 TEXT_DATA_ITINERARY_BACK = "itineraire-data-print-back"
+DIV_RESULTS_BACK = "div-results-back"
 
 # EXPORT
 EXPORT_BUTTON = "export"
