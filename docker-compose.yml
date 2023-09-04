@@ -12,12 +12,14 @@ services:
       - networkapp
   
   otp:
-    build: 
-      context: ./otp
+    image: opentripplanner/opentripplanner:2.3.0
     ports:
       - 8080:8080
     networks:
       - networkapp
+    command: --load --serve
+    volumes:
+      - ./otp/opentripplanner:/var/opentripplanner
     healthcheck:
       test: curl --fail http://localhost:8080 || exit 1
       interval: 10s
