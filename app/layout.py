@@ -27,8 +27,7 @@ difficulty = html.Div(id=ids.DIV_DIFFICULTY, children=[
 ## CONTROL INPUTS ##
 ####################
 
-inputs = html.Div([
-            html.Br(),
+inputs = html.Div(className="overflow-scroll", style={"width": "444px"}, children=[
             render_upload(ids.UPLOAD),
             dbc.Alert(
                     "Ce fichier n'est pas reconnu comme GPX. Aucune modification n'a été faite.",
@@ -83,13 +82,13 @@ map_content = dl.Map([dl.MeasureControl(position="topleft", primaryLengthUnit="k
                             dl.Overlay(dl.LayerGroup(id=ids.LINE_ROUTE_BACK), name="Itinéraire retour", checked=True)
                         ])
                     ],
-                    center = [45.204793, 5.5], zoom = 9, id=ids.MAP, style={'height': '60vh'})
+                    center = [45.204793, 5.5], zoom = 9, id=ids.MAP, style={'height': '100%'})
 
 figure = render_empty_figure()
 
 profile_graph = dcc.Graph(id=ids.GRAPH_PROFILE, 
                         figure= figure,
-                        style={"height": "25%"}
+                        style={"height": "170px"}
                         )
 
 ####################
@@ -206,43 +205,45 @@ header = dbc.Navbar(
     )
 )
 
+
+####################
+## LOADER ##
+####################
+
+loader = dcc.Loading([
+    # STORE DATA
+    dcc.Store(id=ids.STORE_ITINERARIES, data={}),
+    dcc.Store(id=ids.STORE_BACK, data = {}),
+    dcc.Store(id=ids.STORE_FORTH, data = {}),
+    dcc.Store(id=ids.STORE_CURRENT_ROUTE_DATA, data={}),
+    dcc.Store(id=ids.STORE_BUFFER_INSERTION, data={}),
+])
+
+
 ####################
 ## LAYOUT ##
 ####################
 
-layout = html.Div([
-            # HEADER
-            
-            dbc.Container([
-                header,
-                # INPUTS
-                dbc.Row([   
-                            dbc.Col(
-                                [inputs], 
-                                md=4,
-                                class_name="vh-70 overflow-scroll"
-                            ),
-                            dbc.Col([
-                                html.Div(id=ids.DESC_HIKE, children=[]),
-                                dcc.Loading([
-                                    # STORE DATA
-                                    dcc.Store(id=ids.STORE_ITINERARIES, data={}),
-                                    dcc.Store(id=ids.STORE_BACK, data = {}),
-                                    dcc.Store(id=ids.STORE_FORTH, data = {}),
-                                    dcc.Store(id=ids.STORE_CURRENT_ROUTE_DATA, data={}),
-                                    dcc.Store(id=ids.STORE_BUFFER_INSERTION, data={}),
-                                    ]),
-                                profile_graph,
-                                map_content
-                            ], 
-                            md=8,
-                            #className="vh-95 overflow-scroll"
-                            )
-                        ]
-                    )
-                ], fluid=True, style={"height": "100vh"}),
-            
-            
-        ], 
-        #className="vh-100"
-    )
+layout = html.Div(
+    className="vh-100 d-flex flex-column",
+    children=[
+        header,
+        html.Div(
+            className="d-flex flex-fill overflow-hidden",
+            children=[
+                inputs,
+                html.Div(
+                    className="d-flex flex-column flex-fill overflow-hidden",
+                    children=[
+                        html.Div(id=ids.DESC_HIKE, children=[]),
+                        profile_graph,
+                        html.Div(
+                            className="d-flex flex-column flex-fill",
+                            children=[loader, map_content],
+                        ),
+                    ],
+                ),
+            ],
+        ),
+    ],
+)
