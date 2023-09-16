@@ -4,20 +4,25 @@ services:
       context: ./app
     ports:
       - 8050:80
-    links:
-      - otp
-      - alti
-      - valhalla
+    depends_on:
+      otp:
+        condition: service_healthy
+      alti:
+        condition: service_healthy
+      valhalla:
+        condition: service_healthy
     networks:
       - networkapp
   
   otp:
-    build: 
-      context: ./otp
+    image: opentripplanner/opentripplanner:2.3.0
     ports:
       - 8080:8080
     networks:
       - networkapp
+    command: --load --serve
+    volumes:
+      - ./otp/opentripplanner:/var/opentripplanner
     healthcheck:
       test: curl --fail http://localhost:8080 || exit 1
       interval: 10s
@@ -33,7 +38,7 @@ services:
     networks:
       - networkapp
     healthcheck:
-      test: curl --fail http://localhost:8000 || exit 1
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8000' || exit 1
       interval: 10s
       retries: 10
       start_period: 5s
@@ -61,7 +66,7 @@ services:
     networks:
       - networkapp
     healthcheck:
-      test: curl --fail http://localhost:8002 || exit 1
+      test: curl --fail http://localhost:8002/status || exit 1
       interval: 10s
       retries: 10
       start_period: 5s
