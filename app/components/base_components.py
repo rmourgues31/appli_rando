@@ -76,11 +76,13 @@ def render_button(id: str, text: str, n_clicks: int = 0) -> dbc.Button:
     '''
     return dbc.Button(text, id=id, n_clicks=n_clicks)
 
-def render_modal(title: str, content, id: str, close_id: str) -> dbc.Modal:
+def render_modal(title: str, content, id: str, close_id: str, open_id: str, size: str = "xl") -> dbc.Col:
     '''
     Modal with title, content and id
     '''
-    return dbc.Modal([
+    return dbc.Col(dbc.NavItem([
+            render_button(id=open_id, text=title),
+            dbc.Modal([
                 dbc.ModalHeader(dbc.ModalTitle(title)),
                 dbc.ModalBody(html.Div(content)),
                 dbc.ModalFooter(
@@ -88,12 +90,13 @@ def render_modal(title: str, content, id: str, close_id: str) -> dbc.Modal:
                         "Fermer", id=close_id, className="ms-auto", n_clicks=0
                     )
                 )
-            ],
-            centered=True,
-            id=id,
-            is_open=False,
-            size="xl"
-        )
+                ],
+                centered=True,
+                id=id,
+                is_open=False,
+                size=size
+            )
+        ]))
 
 def render_card(content) -> dbc.Card:
     return dbc.Card(dbc.CardBody(content))

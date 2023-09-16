@@ -101,7 +101,8 @@ with open("." + get_asset_url("markdown/tutorial.md"), "r", encoding="UTF8") as 
 tutorial_modal = render_modal(id=ids.MODAL_TUTORIAL,
                             title="Tutoriel",
                             content=[dcc.Markdown(howto_md)], 
-                            close_id=ids.CLOSE_TUTORIAL)
+                            close_id=ids.CLOSE_TUTORIAL,
+                            open_id=ids.OPEN_TUTORIAL)
 
 agencies_modal = render_modal(id=ids.MODAL_AGENCIES, 
                                         title="Opérateurs",
@@ -109,7 +110,9 @@ agencies_modal = render_modal(id=ids.MODAL_AGENCIES,
                                             html.P("Liste des opérateurs fournie dans les données GTFS"),
                                             html.Ul([html.Li(html.A(c["name"], href = c["url"], target = "_blank")) for c in get_agencies()])
                                         ], 
-                                        close_id=ids.CLOSE_AGENCIES)
+                                        close_id=ids.CLOSE_AGENCIES,
+                                        open_id=ids.OPEN_AGENCIES,
+                                        size="s")
 
 credits_modal = render_modal(id=ids.MODAL_CREDITS,
                             title="Crédits",
@@ -123,14 +126,28 @@ credits_modal = render_modal(id=ids.MODAL_CREDITS,
                                     ("Camptocamp", "https://www.camptocamp.org"),
                                     ("Icons8", "https://icons8.com")
                                     ]]), 
-                            close_id=ids.CLOSE_CREDITS)
+                            close_id=ids.CLOSE_CREDITS,
+                            open_id=ids.OPEN_CREDITS,
+                            size="s")
+
+contact_modal = render_modal(id=ids.MODAL_CONTACT,
+                            title="Contact",
+                            content=[
+                                html.Div([
+                                            html.A("itirando@proton.me", href="mailto:itirando@proton.me"),
+                                            html.Br(),
+                                            html.A("Github", href="https://github.com/rmourgues31/itirando", target="_blank")])
+                             ], 
+                            close_id=ids.CLOSE_CONTACT,
+                            open_id=ids.OPEN_CONTACT,
+                            size="s")
 
 hike_df = load_hikes_from_csv()
 example_modal = render_modal(id=ids.MODAL_EXAMPLES,
-                             title="Randonnées existantes",
+                             title="Randonnées",
                             
                              content = [
-                                 dcc.Markdown("- Cliquez sur un lien pour ouvrir le topo. \n - Cliquez sur une ligne pour charger l'itinéraire. \n - Les données présentées sont sous licence [CC by-sa](https://www.camptocamp.org/articles/106728/fr/licences-des-contenus#cc-by-sa).", link_target="_blank"),
+                                 dcc.Markdown("- Cette page présente des randonnées existantes. \n - Cliquez sur un lien pour ouvrir le topo. \n - Cliquez sur une ligne pour charger l'itinéraire. \n - Les données présentées sont sous licence [CC by-sa](https://www.camptocamp.org/articles/106728/fr/licences-des-contenus#cc-by-sa).", link_target="_blank"),
                                  dash_table.DataTable(
                                             id=ids.TABLE_EXAMPLES,
                                             columns=[
@@ -152,7 +169,8 @@ example_modal = render_modal(id=ids.MODAL_EXAMPLES,
                                             page_size= 10,
                                         )
                              ],
-                            close_id=ids.CLOSE_EXAMPLES)
+                            close_id=ids.CLOSE_EXAMPLES,
+                            open_id=ids.OPEN_EXAMPLES)
 
 ####################
 ## HEADER ##
@@ -188,14 +206,11 @@ header = dbc.Navbar(
             ),
             dbc.Row(
                 [
-                    dbc.Col(dbc.NavItem(render_button(id=ids.OPEN_EXAMPLES, text="Randonnées"))),
-                    dbc.Col(dbc.NavItem(render_button(id=ids.OPEN_TUTORIAL, text="Tutoriel"))),
-                    dbc.Col(dbc.NavItem(render_button(id=ids.OPEN_AGENCIES, text="Opérateurs"))),
-                    dbc.Col(dbc.NavItem(render_button(id=ids.OPEN_CREDITS, text="Crédits"))),
                     example_modal,
                     tutorial_modal,
                     agencies_modal,
-                    credits_modal
+                    credits_modal,
+                    contact_modal
                 ],
                 align="start",
                 justify="evenly"

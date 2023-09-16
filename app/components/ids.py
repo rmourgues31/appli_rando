@@ -69,6 +69,10 @@ OPEN_EXAMPLES = "open-examples"
 MODAL_EXAMPLES = "modal-examples"
 CLOSE_EXAMPLES = "close-examples"
 TABLE_EXAMPLES = "table-examples"
+OPEN_CONTACT = "open-contact"
+MODAL_CONTACT = "modal-contact"
+CLOSE_CONTACT = "close-contact"
+TABLE_CONTACT = "table-contact"
 
 # OVERALL LAYOUT
 HEADER = "header"

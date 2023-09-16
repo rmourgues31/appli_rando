@@ -6,7 +6,8 @@ for (modal_id,open_id, close_id) in [
     (ids.MODAL_AGENCIES, ids.OPEN_AGENCIES, ids.CLOSE_AGENCIES),
     (ids.MODAL_CREDITS, ids.OPEN_CREDITS,ids.CLOSE_CREDITS),
     (ids.MODAL_TUTORIAL, ids.OPEN_TUTORIAL, ids.CLOSE_TUTORIAL),
-    (ids.MODAL_EXAMPLES, ids.OPEN_EXAMPLES, ids.CLOSE_EXAMPLES)]:
+    (ids.MODAL_EXAMPLES, ids.OPEN_EXAMPLES, ids.CLOSE_EXAMPLES),
+    (ids.MODAL_CONTACT, ids.OPEN_CONTACT, ids.CLOSE_CONTACT)]:
     def toggle_modal(n1: int, n2: int, is_open: bool) -> bool:
         if n1 or n2:
             return not is_open
