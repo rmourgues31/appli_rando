@@ -12,9 +12,11 @@ Un docker compose permet de démarrer tous les services à la fois une fois les 
 
 ## Fichiers à télécharger 
 
+- Un script `setup.py` permet de télécharger les différents fichiers souhaités (PBF et GTFS) et les place au bon endroit
+- Les archives pour l'altimétrie sont à télécharger soi-même
 - Extracts d'OSM, à utiliser pour valhalla et otp : https://download.openstreetmap.fr/extracts/europe/france/rhone_alpes/
 - Données GTFS pour la planification des itinéraires : https://transport.data.gouv.fr ou https://www.itinisere.fr/fr/donnees-open-data/169/OpenData/Index ou https://data.metropolegrenoble.fr/ckan/dataset/horaires-theoriques-du-reseau-tag 
-- Données Alti IGN : (utiliser 25m ou 5m) https://geoservices.ign.fr/rgealti
+- Données Alti IGN : (utiliser 25m ou 5m) https://geoservices.ign.fr/rgealti / https://geoservices.ign.fr/bdalti
 
 
 # TODO
