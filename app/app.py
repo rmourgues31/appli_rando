@@ -4,6 +4,6 @@ import os
 
 app = Dash(prevent_initial_callbacks=True, 
            external_stylesheets=[dbc.themes.SANDSTONE],
-           title="itirando",
+           title="itirandouce",
            update_title='Chargement...',
            assets_folder=os.getenv("ASSETS"))

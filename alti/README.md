@@ -1,8 +1,10 @@
 ## Alti
 
+Application Flask (Python).
+
 #### Installation
 
-- Mettre les rasters IGN dans un dossier de l'application
+- Mettre les rasters IGN dans un dossier de l'application et renseigner les variables d'environnement `BD_ALTI_PATH_SPECS` et `BD_ALTI_PATH_DALLES` 
 - Installer les librairies par ex avec `pipenv install`
 - Lancer l'application avec `pipenv run uvicorn main:app`
 

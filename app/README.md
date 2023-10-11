@@ -1,10 +1,12 @@
 ## App principale
 
+Application Dash (Python).
+
 #### Installation
 
 Pour Valhalla :
 - Si ACTOR est renseigné dans les variables d'environnement, l'application utilisera le binder avec les fichiers locaux. Ne marche pas avec Docker !
-- Sinon renseigner une autre valeur pour lancer le serveur.
+- Sinon renseigner n'importe quelle autre valeur pour lancer le serveur, qui se connectera au micro-service.
 
 Pour l'app :
 - Installer les librairies par ex avec `pipenv install`. Installer aussi `gunicorn` si ce n'est pas fait.
