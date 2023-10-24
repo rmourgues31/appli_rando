@@ -18,6 +18,7 @@ orjson = "*"
 dash-extensions = "*"
 gunicorn = "*"
 pandas = "*"
+urllib3 = "*"
 
 [dev-packages]
 
