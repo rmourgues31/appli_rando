@@ -11,3 +11,4 @@ Service utilisant l'image Docker d'OTP https://hub.docker.com/r/opentripplanner/
 
 - Documentation: https://docs.opentripplanner.org/en/v2.3.0/Basic-Tutorial/ 
 - GitHub: https://github.com/opentripplanner/OpenTripPlanner
+- Docker : https://docs.opentripplanner.org/en/v2.4.0/Container-Image/

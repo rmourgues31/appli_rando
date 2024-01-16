@@ -4,10 +4,11 @@
 		["https://www.itinisere.fr/fr/donnees-open-data/169/OpenData/Download?fileName=CG38.GTFS.zip", "car_isere.GTFS.zip"],
 		["https://data.mobilites-m.fr/api/gtfs/GSV", "tougo.GTFS.zip"],
 		["https://donnees.grandchambery.fr/api/v2/catalog/datasets/arrets-et-horaires-theoriques-bus/files/400d7da94eaacb5e52c612f8ac28e420", "chambery.GTFS.zip"],
-		["https://mobi-iti-ara.okina.fr/static/mobiiti_savoie/gtfs.zip", "car_savoie.GFTS.zip"],
+		["https://mobi-iti-ara.okina.fr/static/mobiiti_savoie/gtfs.zip", "car_savoie.GTFS.zip"],
 		["https://trouver.datasud.fr/dataset/44187c20-e037-4733-950a-b4463d314b90/resource/9ebd1d24-cca2-4f2e-9185-69db96fede8f/download/export_gtfs_zou_express.zip", "zou_express.GTFS.zip"],
 		["https://trouver.datasud.fr/dataset/44187c20-e037-4733-950a-b4463d314b90/resource/94e94c79-6d3e-486d-b65b-79aa0c2f6ed1/download/export_gtfs_zou_proximite.zip", "zou_proxi.GTFS.zip"],
-		["https://www.data.gouv.fr/fr/datasets/r/35cf4d6c-a45b-442f-9cd0-a3293d344a9d", "briancon.GTFS.zip"]
+		["https://www.data.gouv.fr/fr/datasets/r/35cf4d6c-a45b-442f-9cd0-a3293d344a9d", "briancon.GTFS.zip"],
+		["https://eu.ftp.opendatasoft.com/sncf/gtfs/export-ter-gtfs-last.zip", "sncf.GTFS.zip"]
 			
 	],
 	"pbf": [

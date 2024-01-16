@@ -1,0 +1,2 @@
+agency_id,agency_name,agency_url,agency_timezone,agency_lang,agency_phone,agency_fare_url,agency_email
+SYNCHRO,"Synchro Bus",https://synchro.grandchambery.fr,Europe/Paris,fr,+33.(0)4.79.68.73.73,https://synchro.grandchambery.fr/tarifs-et-abonnements-bus/les-tickets/,info@synchro-bus.fr
